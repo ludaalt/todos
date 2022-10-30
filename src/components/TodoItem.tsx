@@ -20,9 +20,9 @@ const DoneButton = styled.button`
   border-radius: 50%;
 `;
 
-const TodoItem: React.FC<TodoItemType> = ({ item }) => {
+const TodoItem: React.FC<TodoItemType> = ({ item, toggleCompleted }) => {
   return (
-    <StyledTodoItem>
+    <StyledTodoItem onClick={() => toggleCompleted(item)}>
       <DoneButton>
         {item.isComplete && (
           <DoneIcon style={{ color: 'green', margin: 'auto' }} />

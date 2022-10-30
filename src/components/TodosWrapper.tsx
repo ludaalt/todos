@@ -3,6 +3,8 @@ import { TextField } from '@mui/material';
 import styled from 'styled-components';
 
 import Todos from './Todos';
+// eslint-disable-next-line
+import { TodosWrapperType } from '../types/types';
 
 const StyledTodoWrapper = styled.div`
   background-color: #fff;
@@ -14,7 +16,10 @@ const StyledTodoWrapper = styled.div`
   border-radius: 20px;
 `;
 
-const TodosWrapper = () => {
+const TodosWrapper: React.FC<TodosWrapperType> = ({
+  todos,
+  toggleCompleted,
+}) => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -33,7 +38,7 @@ const TodosWrapper = () => {
         placeholder='What needs to be done?'
       />
 
-      <Todos />
+      <Todos todos={todos} toggleCompleted={toggleCompleted} />
     </StyledTodoWrapper>
   );
 };
