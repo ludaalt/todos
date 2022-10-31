@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { Typography } from '@mui/material';
 // eslint-disable-next-line
 import { ControlPanelType } from '../types/types';
-// eslint-disable-next-line
+
+import ControlButton from './ControlButton';
 import { countLeftTodos } from '../utils/countLeftTodos';
 
 const StyledControlPanel = styled.div`
@@ -22,32 +23,15 @@ const ControlPanel: React.FC<ControlPanelType> = ({
       <Typography>{countLeftTodos(todos)} items left</Typography>
 
       <div>
-        <Typography>
-          <button
-            style={{ font: 'inherit' }}
-            onClick={() => showAllTodos(todos)}
-          >
-            All
-          </button>
-        </Typography>
-
-        <Typography>
-          <button
-            style={{ font: 'inherit' }}
-            onClick={() => hideCompletedTodos(todos)}
-          >
-            Active
-          </button>
-        </Typography>
-
-        <Typography>
-          <button
-            style={{ font: 'inherit' }}
-            onClick={() => showCompletedTodos(todos)}
-          >
-            Completed
-          </button>
-        </Typography>
+        <ControlButton title='All' buttonHandler={() => showAllTodos(todos)} />
+        <ControlButton
+          title='Active'
+          buttonHandler={() => hideCompletedTodos(todos)}
+        />
+        <ControlButton
+          title='Completed'
+          buttonHandler={() => showCompletedTodos(todos)}
+        />
       </div>
 
       <Typography>
