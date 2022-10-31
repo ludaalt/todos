@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 import styled from 'styled-components';
 
 import Todos from './Todos';
+import ControlPanel from './ControlPanel';
 // eslint-disable-next-line
 import { TodosWrapperType } from '../types/types';
 
@@ -19,26 +20,48 @@ const StyledTodoWrapper = styled.div`
 const TodosWrapper: React.FC<TodosWrapperType> = ({
   todos,
   toggleCompleted,
+  hideCompletedTodos,
+  showAllTodos,
+  showCompletedTodos,
+  addNewTodo,
 }) => {
-  const handleChange = (
+  const [currentInputValue, setCurrentInputValue] = useState('');
+
+  const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const element = event.currentTarget as HTMLInputElement;
     const value = element.value;
-    console.log(value);
+
+    setCurrentInputValue(value);
+  };
+
+  const submitValue = (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    addNewTodo(currentInputValue);
+    setCurrentInputValue('');
   };
 
   return (
     <StyledTodoWrapper>
-      <TextField
-        onChange={(event) => handleChange(event)}
-        fullWidth
-        autoComplete='off'
-        variant='standard'
-        placeholder='What needs to be done?'
-      />
+      <form onSubmit={submitValue}>
+        <TextField
+          onChange={(event) => handleInputChange(event)}
+          fullWidth
+          autoComplete='off'
+          variant='standard'
+          placeholder='What needs to be done?'
+          value={currentInputValue}
+        />
+      </form>
 
       <Todos todos={todos} toggleCompleted={toggleCompleted} />
+      <ControlPanel
+        todos={todos}
+        hideCompletedTodos={hideCompletedTodos}
+        showAllTodos={showAllTodos}
+        showCompletedTodos={showCompletedTodos}
+      />
     </StyledTodoWrapper>
   );
 };
