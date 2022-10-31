@@ -5,6 +5,8 @@
 - Create React App
 - TypeScript
 - styled-components
+- MUI
+- React Testing Library
 
 ### Ссылка на проект
 
