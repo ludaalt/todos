@@ -21,7 +21,7 @@ const DoneButton = styled.button`
 `;
 
 const TodoItem: React.FC<TodoItemType> = ({ item, toggleCompleted }) => {
-  return (
+  return item.isShow ? (
     <StyledTodoItem onClick={() => toggleCompleted(item)}>
       <DoneButton>
         {item.isComplete && (
@@ -37,7 +37,7 @@ const TodoItem: React.FC<TodoItemType> = ({ item, toggleCompleted }) => {
         {item.title}
       </Typography>
     </StyledTodoItem>
-  );
+  ) : null;
 };
 
 export default TodoItem;
