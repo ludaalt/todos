@@ -10,6 +10,15 @@ import { countLeftTodos } from '../utils/countLeftTodos';
 const StyledControlPanel = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  .container {
+    display: flex;
+
+    & p:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
 `;
 
 const ControlPanel: React.FC<ControlPanelType> = ({
@@ -22,7 +31,7 @@ const ControlPanel: React.FC<ControlPanelType> = ({
     <StyledControlPanel>
       <Typography>{countLeftTodos(todos)} items left</Typography>
 
-      <div>
+      <div className='container'>
         <ControlButton title='All' buttonHandler={() => showAllTodos(todos)} />
         <ControlButton
           title='Active'

@@ -1,8 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Typography } from '@mui/material';
 
 // eslint-disable-next-line
 import { ControlButtonType } from '../types/types';
+
+const StyledButton = styled.button`
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #fff;
+
+  &:focus {
+    border: 1px solid lightgray;
+  }
+`;
 
 const ControlButton: React.FC<ControlButtonType> = ({
   title,
@@ -10,9 +21,9 @@ const ControlButton: React.FC<ControlButtonType> = ({
 }) => {
   return (
     <Typography>
-      <button style={{ font: 'inherit' }} onClick={buttonHandler}>
+      <StyledButton style={{ font: 'inherit' }} onClick={buttonHandler}>
         {title}
-      </button>
+      </StyledButton>
     </Typography>
   );
 };
