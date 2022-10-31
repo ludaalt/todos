@@ -6,9 +6,20 @@ import TodoItem from './TodoItem';
 import { TodoListType } from '../types/types';
 
 const TodosList = styled.ul`
-  margin-top: 20px;
+  margin: 20px 0;
+  height: 30vh;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    height: 50px;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #1976d2;
+    border-radius: 5px;
+  }
 `;
-// eslint-disable-next-line
 
 const Todos: React.FC<TodoListType> = ({ todos, toggleCompleted }) => {
   return (
