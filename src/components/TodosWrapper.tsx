@@ -26,6 +26,7 @@ const TodosWrapper: React.FC<TodosWrapperType> = ({
   addNewTodo,
 }) => {
   const [currentInputValue, setCurrentInputValue] = useState('');
+  const [error, setError] = useState('');
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,14 +39,21 @@ const TodosWrapper: React.FC<TodosWrapperType> = ({
 
   const submitValue = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-    addNewTodo(currentInputValue);
-    setCurrentInputValue('');
+
+    if (currentInputValue.length > 2) {
+      addNewTodo(currentInputValue);
+      setCurrentInputValue('');
+      setError('');
+    } else {
+      setError('Пожалуйста, введите корректное название задачи');
+    }
   };
 
   return (
     <StyledTodoWrapper>
       <form onSubmit={submitValue}>
         <TextField
+          error={!!error}
           onChange={(event) => handleInputChange(event)}
           fullWidth
           autoComplete='off'
@@ -54,6 +62,7 @@ const TodosWrapper: React.FC<TodosWrapperType> = ({
           value={currentInputValue}
         />
       </form>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <Todos todos={todos} toggleCompleted={toggleCompleted} />
       <ControlPanel
