@@ -9,7 +9,7 @@ export interface TodoType {
 
 export interface TodoItemType {
   item: TodoType;
-  toggleCompleted: (item: TodoType) => void;
+  toggleCompleted?: (item: TodoType) => void;
 }
 
 export interface TodoListType {

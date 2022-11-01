@@ -22,7 +22,7 @@ const DoneButton = styled.button`
 
 const TodoItem: React.FC<TodoItemType> = ({ item, toggleCompleted }) => {
   return item.isShow ? (
-    <StyledTodoItem onClick={() => toggleCompleted(item)}>
+    <StyledTodoItem onClick={() => toggleCompleted?.(item)}>
       <DoneButton>
         {item.isComplete && (
           <DoneIcon style={{ color: 'green', margin: 'auto' }} />
